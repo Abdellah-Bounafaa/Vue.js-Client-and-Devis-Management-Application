@@ -1,42 +1,39 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import ClientList from './views/ClientList.vue'
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <ClientList />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <div class="content">
+    <RouterView />
+  </div>
+  <footer>
+    <nav>
+      <RouterLink to="/">Clients</RouterLink>
+      <RouterLink to="/devis">Devis</RouterLink>
+    </nav>
+  </footer>
 </template>
 
 <style scoped>
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw; /* Ensure the header takes the full width */
+.content {
+  min-height: calc(100vh - 50px); /* Adjust based on footer height */
+  padding: 20px;
   background-color: #1c0833;
+  color: #ffffff;
 }
 
-.wrapper {
+footer {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start; /* Align items to the left */
   align-items: center;
-  text-align: center;
+  height: 50px; /* Adjust as needed */
+  background-color: #1c0833;
+  padding-left: 20px; /* Add padding to the left */
 }
 
 nav {
+  display: flex;
   width: 100%;
-  font-size: 12px;
-  margin-top: 2rem;
 }
 
 nav a.router-link-exact-active {
@@ -61,7 +58,6 @@ nav a:first-of-type {
   nav {
     font-size: 1rem;
     padding: 1rem 0;
-    margin-top: 1rem;
   }
 }
 </style>
