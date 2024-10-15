@@ -1,0 +1,117 @@
+
+.devis-list {
+  background-color: #1c0833;
+  padding: 30px;
+  color: #ffffff;
+  border-radius: 8px;
+  width: 800px;
+  margin: 0 auto; /* Center the devis list */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #5a2b8a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 24px; /* Increase font size for the + symbol */
+}
+
+button:hover {
+  background-color: #4a2370;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.devis-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2b0d45;
+  border-radius: 8px;
+  padding: 10px 30px;
+  margin-bottom: 10px;
+  gap: 20px; /* Increase space between elements */
+}
+
+.devis-info {
+  flex-grow: 1;
+  margin-left: 20px;
+  color: #fff;
+}
+
+.devis-number,
+.devis-date,
+.devis-price,
+.devis-client {
+  display: block;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #2b0d45;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  color: #fff;
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+form .form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Add space between the two input fields */
+}
+
+form .form-group {
+  flex: 1;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="number"],
+form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+form input[type="checkbox"] {
+  margin-right: 10px;
+}
