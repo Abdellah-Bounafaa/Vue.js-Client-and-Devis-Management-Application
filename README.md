@@ -1,84 +1,64 @@
 # Vue.js Client and Devis Management Application
 
 ## Description
-
-This project is a Vue.js application designed to manage clients and devis. It provides functionalities to view, create, and delete clients and devis. The application leverages Vue Router for navigation and Axios for API requests.
+This project is a Vue.js application designed for managing clients and devis (estimates). It allows users to efficiently view, create, and delete both clients and devis, utilizing Vue Router for seamless navigation and Axios for making API requests.
 
 ## Features
+### Clients Management
+- **View Clients**: Access a comprehensive list of clients.
+- **Add Client**: Easily add new clients through a user-friendly modal.
+- **Delete Client**: Remove clients with a simple click on the trash icon.
 
-- **Clients Management**
-  - View a list of clients
-  - Add a new client
-  - Delete a client
-- **Devis Management**
-  - View a list of devis
-  - Add a new devis
-  - Delete a devis
+### Devis Management
+- **View Devis**: Browse through a list of devis.
+- **Add Devis**: Create new devis by filling out a modal form.
+- **Delete Devis**: Delete devis effortlessly by clicking the corresponding trash icon.
 
 ## Setup
-
 ### Prerequisites
-
-- Node.js (>= 12.x)
-- npm (>= 6.x) or yarn (>= 1.x)
+Make sure you have the following installed on your machine:
+- Node.js (version 12.x or later)
+- npm (version 6.x or later) or yarn (version 1.x or later)
 
 ### Installation
-
 1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-username/your-repo-name.git
+   ```bash
+   git clone https://github.com/Abdellah-Bounafaa/Vue.js-Client-and-Devis-Management-Application.git
    cd your-repo-name
-   
-2. Install dependencies:
-   npm install
-   # or
-   yarn install
-   
-3. Start the development server:
-   npm run serve
-   # or
-   yarn serve
+2. Install dependencies and start the development server:
+   **npm install && npm run serve**
+   or
+   **yarn install && yarn serve**
 
-# Usage
+## Usage
 
-## Clients
-- **View Clients**: Navigate to the "Clients" page to view a list of clients.
+### Clients
+- **View Clients**: Navigate to the "Clients" page to view the list.
 - **Add Client**: Click the "+" button to open a modal and fill in the client details.
 - **Delete Client**: Click the trash icon next to a client to delete it.
 
-## Devis
-- **View Devis**: Navigate to the "Devis" page to view a list of devis.
+### Devis
+- **View Devis**: Navigate to the "Devis" page to view the list.
 - **Add Devis**: Click the "+" button to open a modal and fill in the devis details.
 - **Delete Devis**: Click the trash icon next to a devis to delete it.
 
 ## Screenshots
 
 ### Clients List
-![Clients List](path_to_clients_list_screenshot)
+![Clients List](https://github.com/Abdellah-Bounafaa/Vue.js-Client-and-Devis-Management-Application/blob/main/src/assets/demo/clients.PNG)
+
+### Create Client
+![Create Client](https://github.com/Abdellah-Bounafaa/Vue.js-Client-and-Devis-Management-Application/blob/main/src/assets/demo/create%20client.PNG)
+
+### Create Devis
+![Create Devis](https://github.com/Abdellah-Bounafaa/Vue.js-Client-and-Devis-Management-Application/blob/main/src/assets/demo/create%20devis.PNG)
 
 ### Devis List
-![Devis List](path_to_devis_list_screenshot)
+![Devis List](https://github.com/Abdellah-Bounafaa/Vue.js-Client-and-Devis-Management-Application/blob/main/src/assets/demo/devis.PNG)
 
-### Add Devis Modal
-![Add Devis Modal](path_to_add_devis_modal_screenshot)
-
-### Add Client Modal
-![Add Client Modal](path_to_add_client_modal_screenshot)
-
-# Project Structure
-
-src/
-├── assets/
-│   ├── clients.css
-│   └── devis.css
-├── components/
-│   ├── ClientList.vue
-│   └── DevisList.vue
-├── data/
-│   └── axiosInstance.js
-├── views/
-│   ├── ClientList.vue
-│   └── DevisList.vue
-├── [App.vue](http://_vscodecontentref_/#%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cposte%5C%5Ctest%5C%5Cfront_end%5C%5Csrc%5C%5CApp.vue%22%2C%22_sep%22%3A1%2C%22external%22%3A%22file%3A%2F%2F%2Fc%253A%2FUsers%2Fposte%2Ftest%2Ffront_end%2Fsrc%2FApp.vue%22%2C%22path%22%3A%22%2FC%3A%2FUsers%2Fposte%2Ftest%2Ffront_end%2Fsrc%2FApp.vue%22%2C%22scheme%22%3A%22file%22%7D%7D)
-├── main.js
-└── router.js
+## Technologies Used
+- **Vue.js**
+- **Vue Router**
+- **Axios**
+- **Node.js**
+- **npm/yarn**
