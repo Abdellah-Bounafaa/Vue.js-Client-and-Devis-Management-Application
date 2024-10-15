@@ -17,6 +17,9 @@
       <div class="devis-info">
         <span class="devis-client">Client: {{ devis.client.nom }} {{ devis.client.prenom }}</span>
       </div>
+      <a href="#" @click="deleteDevis(devis.id)">
+        <i class="fas fa-trash-alt" style="color: red;"></i>
+      </a>
     </div>
     <div v-if="showModal" class="modal" @click.self="showModal = false">
       <div class="modal-content">
@@ -46,9 +49,9 @@
           <div class="form-row">
             <div class="form-group">
               <label for="clientId">Client:</label>
-              <select id="clientId" v-model="newDevis.client_id" >
+              <select id="clientId" v-model="newDevis.client_id">
                 <option v-for="client in store.state.clients" :key="client.id" :value="client.id">
-                 {{ client.nom }} {{ client.prenom }}
+                  {{ client.nom }} {{ client.prenom }}
                 </option>
               </select>
             </div>
@@ -127,6 +130,15 @@ export default {
       }
     };
 
+    const deleteDevis = async (devisId) => {
+      try {
+        await axiosInstance.delete(`/devis/${devisId}`);
+        state.devisList = state.devisList.filter(devis => devis.id !== devisId);
+      } catch (error) {
+        console.error('Error deleting devis:', error);
+      }
+    };
+
     const formatDate = (dateString) => {
       return format(new Date(dateString), 'dd MMMM yyyy');
     };
@@ -137,10 +149,11 @@ export default {
     });
 
     return {
-          store,
+      store,
       ...toRefs(state),
       formatDate,
-      addDevis
+      addDevis,
+      deleteDevis
     };
   }
 };
