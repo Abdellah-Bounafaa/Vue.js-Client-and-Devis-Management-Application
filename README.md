@@ -24,7 +24,7 @@ Make sure you have the following installed on your machine:
 1. Clone the repository:
    ```bash
    git clone https://github.com/Abdellah-Bounafaa/Vue.js-Client-and-Devis-Management-Application.git
-   cd your-repo-name
+   cd Vue.js-Client-and-Devis-Management-Application
 2. Install dependencies and start the development server:
    **npm install && npm run serve**
    or
