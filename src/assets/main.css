@@ -47,3 +47,39 @@ a,
     padding: 0 2rem;
   }
 }
+
+.add-btn {
+  background-color: #5a2b8a;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 24px;
+  text-align: center;
+  line-height: 24px; /* Center the + symbol vertically */
+  width: 30px; /* Make the button larger */
+  height: 30px; /* Make the button larger */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+form button {
+  background-color: #5a2b8a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #4a2370;
+}
+
+.full-width-button {
+  width: 100%; /* Make the button full width */
+  padding: 8px; /* Decrease padding */
+}
