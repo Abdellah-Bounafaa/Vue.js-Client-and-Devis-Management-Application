@@ -38,8 +38,18 @@ const addClient = async () => {
     }
 };
 
+const deleteClient = async (clientId) => {
+    try {
+        await axiosInstance.delete(`/clients/${clientId}`);
+        state.clients = state.clients.filter(client => client.id !== clientId);
+    } catch (error) {
+        console.error('Error deleting client:', error);
+    }
+};
+
 export default {
     state,
     fetchClients,
-    addClient
+    addClient,
+    deleteClient
 };
