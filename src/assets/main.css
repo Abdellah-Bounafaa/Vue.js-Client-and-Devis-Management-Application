@@ -83,3 +83,17 @@ form button:hover {
   width: 100%; /* Make the button full width */
   padding: 8px; /* Decrease padding */
 }
+
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000;
+}
