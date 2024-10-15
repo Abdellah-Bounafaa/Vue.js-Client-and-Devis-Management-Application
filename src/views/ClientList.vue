@@ -15,7 +15,8 @@
       <div :class="getStatusClass(client.estPersonne)">
         {{ getStatusText(client.estPersonne) }}
       </div>
-    </div>
+      <a href="#"  @click="deleteClient(client.id)">  <i class="fas fa-trash-alt" style="color: red;"></i></a>
+          </div>
     <div v-if="store.state.showModal" class="modal" @click.self="store.state.showModal = false">
       <div class="modal-content">
         <span class="close" @click="store.state.showModal = false">&times;</span>
@@ -64,6 +65,10 @@ export default {
       return est_personne ? 'Actif' : 'Refusé';
     };
 
+    const deleteClient = async (clientId) => {
+      await store.deleteClient(clientId);
+    };
+
     onMounted(() => {
       store.fetchClients();
     });
@@ -72,7 +77,8 @@ export default {
       store,
       formatDate,
       getStatusClass,
-      getStatusText
+      getStatusText,
+      deleteClient
     };
   }
 };
