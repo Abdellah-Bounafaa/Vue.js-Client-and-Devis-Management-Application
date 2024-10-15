@@ -1,6 +1,9 @@
 <template>
   <div class="devis-list">
-    <h2>Liste des devis :</h2>
+    <div class="header">
+      <h2>Liste des devis :</h2>
+      <a href="#" class="add-btn" @click="showModal = true">+</a>
+    </div>
     <div v-for="(devis, index) in devisList" :key="index" class="devis-card">
       <div class="devis-info">
         <span class="devis-number">Numéro: {{ devis.numero }}</span>
@@ -15,18 +18,77 @@
         <span class="devis-client">Client: {{ devis.client.nom }} {{ devis.client.prenom }}</span>
       </div>
     </div>
+    <div v-if="showModal" class="modal" @click.self="showModal = false">
+      <div class="modal-content">
+        <span class="close" @click="showModal = false">&times;</span>
+        <h2>Ajouter un devis</h2>
+        <form @submit.prevent="addDevis">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="numero">Numéro:</label>
+              <input type="text" id="numero" v-model="newDevis.numero" required>
+            </div>
+            <div class="form-group">
+              <label for="dateEffet">Date d'effet:</label>
+              <input type="date" id="dateEffet" v-model="newDevis.date_effet" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prix">Prix:</label>
+              <input type="number" id="prix" v-model="newDevis.prix" required>
+            </div>
+            <div class="form-group">
+              <label for="frequencePrix">Fréquence Prix:</label>
+              <input type="text" id="frequencePrix" v-model="newDevis.frequence_prix" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="clientId">Client:</label>
+              <select id="clientId" v-model="newDevis.client_id" >
+                <option v-for="client in store.state.clients" :key="client.id" :value="client.id">
+                 {{ client.nom }} {{ client.prenom }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="voitures">Voitures:</label>
+              <select id="voitures" v-model="newDevis.voitures" multiple>
+                <option v-for="voiture in voitures" :key="voiture.id" :value="voiture.id">
+                  {{ voiture.numero_immatriculation }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="full-width-button">Ajouter</button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import '../assets/devis.css'
 import { reactive, toRefs, onMounted } from 'vue';
 import axiosInstance from '../data/axiosInstace';
 import { format } from 'date-fns';
+import store from '../store';
 
 export default {
   setup() {
     const state = reactive({
-      devisList: []
+      devisList: [],
+      showModal: false,
+      newDevis: {
+        numero: '',
+        date_effet: '',
+        prix: '',
+        frequence_prix: '',
+        client_id: '',
+        voitures: []
+      },
+      voitures: []
     });
 
     const fetchDevis = async () => {
@@ -38,105 +100,48 @@ export default {
       }
     };
 
+    const fetchVoitures = async () => {
+      try {
+        const response = await axiosInstance.get('/voitures');
+        state.voitures = response.data;
+      } catch (error) {
+        console.error('Error fetching voitures:', error);
+      }
+    };
+
+    const addDevis = async () => {
+      try {
+        const response = await axiosInstance.post('/devis/create', state.newDevis);
+        state.devisList.push(response.data);
+        state.showModal = false;
+        state.newDevis = {
+          numero: '',
+          date_effet: '',
+          prix: '',
+          frequence_prix: '',
+          client_id: '',
+          voitures: []
+        };
+      } catch (error) {
+        console.error('Error adding devis:', error);
+      }
+    };
+
     const formatDate = (dateString) => {
       return format(new Date(dateString), 'dd MMMM yyyy');
     };
 
     onMounted(() => {
       fetchDevis();
+      fetchVoitures();
     });
 
     return {
+          store,
       ...toRefs(state),
-      formatDate
+      formatDate,
+      addDevis
     };
   }
 };
 </script>
-
-<style scoped>
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw; /* Ensure the header takes the full width */
-  background-color: #1c0833;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  nav {
-    font-size: 1rem;
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-
-.devis-list {
-  background-color: #1c0833;
-  padding: 30px;
-  color: #ffffff;
-  border-radius: 8px;
-  width: 800px;
-  margin: 0 auto; /* Center the devis list */
-}
-
-h2 {
-  margin-bottom: 20px;
-}
-
-.devis-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #2b0d45;
-  border-radius: 8px;
-  padding: 10px 30px;
-  margin-bottom: 10px;
-  gap: 20px; /* Increase space between elements */
-}
-
-.devis-info {
-  flex-grow: 1;
-  margin-left: 20px;
-  color: #fff;
-}
-
-.devis-number,
-.devis-date,
-.devis-price,
-.devis-client {
-  display: block;
-}
-</style>
