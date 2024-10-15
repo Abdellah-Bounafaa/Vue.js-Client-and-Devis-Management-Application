@@ -5,13 +5,13 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <div class="content">
     <RouterView />
-  </div>
   <footer>
     <nav>
       <RouterLink to="/">Clients</RouterLink>
       <RouterLink to="/devis">Devis</RouterLink>
     </nav>
   </footer>
+  </div>
 </template>
 
 <style scoped>
